@@ -13,7 +13,32 @@
     }
     h1 {
         text-align: center;
-        margin-top: 20px;
+        margin-top: 50px;
         color: pink;
         font-size: 70px;
+        font-family: 'Goblin One', cursive;
+    }
+
+
+
+
+    #currentDate{
+        font-family: 'Dancing Script', cursive;
+        float:right;
+        margin-right: 10px;
+    }
+   
+    .search-component {
+        margin: 20px;
+    }
+    #uvIndex{
+        width: 76px;
+        height: 45px;
+    }
+
+    #currentTempIcon{
+        float: right;
+        width: 70px;
+        height: 70px;
+        
     }
