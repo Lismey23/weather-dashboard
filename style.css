@@ -1,0 +1,19 @@
+.hero {
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	background-size: cover;
+    backface-visibility: hidden;
+	height: 100vh;
+	overflow: hidden;
+	position: relative;
+    width: 100%;
+    width: auto;
+    height: 350px;
+
+    }
+    h1 {
+        text-align: center;
+        margin-top: 20px;
+        color: pink;
+        font-size: 70px;
+    }
