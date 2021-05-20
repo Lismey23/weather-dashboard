@@ -40,7 +40,7 @@ $(document).ready(function(){
                 $(".currentConditions").removeClass('currentConditions')
                 $(".currentConditions").addClass("contentShow")
                 
-                // $( "p" ).removeClass( "myClass yourClass" )
+                
 
 
                 // Display The Searched City by User

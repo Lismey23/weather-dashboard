@@ -18,12 +18,21 @@
         font-size: 70px;
         font-family: 'Goblin One', cursive;
     }
+    .title{
+        background-color: rgba(22, 22, 22, 0.952);
+        color: white;
+        padding: 20px;
+        text-align: center;
+        margin-top: 20px;
+    }
 
     .currentConditions{
         display: none;
     }
     .contentShow {
         border: black;
+        width: 100%;
+        margin-top: 30px;
     }
 
 
@@ -45,8 +54,11 @@
 
     #currentTempIcon{
         float: right;
-        width: 70px;
-        height: 70px;
+        width: 100px;
+        height: 100px;
         margin-right:30px;
+        margin-top: 20px;
+       
+        
         
     }
