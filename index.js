@@ -37,6 +37,11 @@ $(document).ready(function(){
             response.json().then(function(data){
                 console.log(data);
 
+                $(".currentConditions").removeClass('currentConditions')
+                $(".currentConditions").addClass("contentShow")
+                
+                // $( "p" ).removeClass( "myClass yourClass" )
+
 
                 // Display The Searched City by User
 
@@ -53,9 +58,13 @@ $(document).ready(function(){
 
                 
                 const currentTempIcon = $('#currentTempIcon');
-                
+                // Display the Weather Icon
                 currentTempIcon.attr("src", 'http://openweathermap.org/img/wn/'+ data.weather[0].icon+'.png')
 
+                // Display the UV Index and display the color associated with a favorable, moderate o severe condition
+
+
+                // const uvIndex = data.
 
 
 

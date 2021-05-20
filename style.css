@@ -19,6 +19,13 @@
         font-family: 'Goblin One', cursive;
     }
 
+    .currentConditions{
+        display: none;
+    }
+    .contentShow {
+        border: black;
+    }
+
 
 
 
@@ -40,5 +47,6 @@
         float: right;
         width: 70px;
         height: 70px;
+        margin-right:30px;
         
     }
