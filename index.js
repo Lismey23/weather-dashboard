@@ -3,32 +3,32 @@ $(document).ready(function(){
     // Grab the current date from Dayjs and display it
     console.log(dayjs())
 
-    const todayDate = dayjs().format('MM/DD/YYYY')
-    const todayForDate = dayjs().format('MM-DD-YY')
+    var todayDate = dayjs().format('MM/DD/YYYY')
+    var todayForDate = dayjs().format('MM-DD-YY')
     
 
     // console.log('todayDate')
     // // Display the date on the page
     // $("#currentDate").text(todayDate);
 
-    
-    const inputCity = $('#city-input')
-    const searchBtn= $('#searchBtn')
-    const searchHistory =[]
-    // const searchedCity;
-    // const apiCall;
+    var cardRow = $(".card-row")
+    var inputCity = $('#city-input')
+    var searchBtn= $('#searchBtn')
+    var searchHistory =[]
+    // var searchedCity;
+    // var apiCall;
 
-    const apiKey = 'cb8354f1acd21f6fe1ac79701f78a219'
+    var apiKey = 'cb8354f1acd21f6fe1ac79701f78a219'
 
 // Add event listener to the submit button
 
     searchBtn.on("click", function(){
         
-        const searchedCity = inputCity.val();
+        var searchedCity = inputCity.val();
 
         // API call
 
-        const apiCall = "http://api.openweathermap.org/data/2.5/weather?q="+searchedCity+"&units=imperial"+"&appid="+apiKey;
+        var apiCall = "http://api.openweathermap.org/data/2.5/weather?q="+searchedCity+"&units=imperial"+"&appid="+apiKey;
         console.log(apiCall);
         fetch(apiCall)
         .then(function(response){
@@ -48,29 +48,29 @@ $(document).ready(function(){
                 //  Display today's date
                 $('#today').text("Weather Conditions ["+ todayForDate + "]")
                 // Displau temperature
-                $('#temp').text('Current Temperature: ' + data.main.temp + ' [F]');
+                $('#temp').text('Current Temperature: ' + data.main.temp + ' [°F]');
                 // Display Humidity
                 $('#humidity').text('Humidity: '+ data.main.humidity+' %');
                 // Display WindSpeed
                 $('#windSpeed').text('WindSpeed: '+ data.wind.speed + " MPH")
 
                 
-                const currentTempIcon = $('#currentTempIcon');
+                var currentTempIcon = $('#currentTempIcon');
                 // Display the Weather Icon
                 currentTempIcon.attr("src", 'http://openweathermap.org/img/wn/'+ data.weather[0].icon+'.png')
 
                 // Display the UV Index and display the color associated with a favorable, moderate o severe condition
 
                
-                const lat = data.coord.lat
-                const lon = data.coord.lon
-                let UVQueryURL = "https://api.openweathermap.org/data/2.5/onecall?lat="+ lat + "&lon=" + lon + "&appid=" + apiKey + "&cnt=1";
+                var lat = data.coord.lat
+                var lon = data.coord.lon
+                var UVQueryURL = "https://api.openweathermap.org/data/2.5/onecall?lat="+ lat + "&lon=" + lon + "&appid=" + apiKey + "&cnt=1";
                 fetch(UVQueryURL)
                 .then(function(UvResponse){
                     UvResponse.json().then(function(res){
                         console.log(res)
 
-                        const uvValue = res.current.uvi
+                        var uvValue = res.current.uvi
                         console.log(uvValue)
                         $("#uvIndex").text('UV Index: '+ uvValue)
                         
@@ -93,18 +93,31 @@ $(document).ready(function(){
                     
                     // Five days Forecast 
 
-                    let fiveDaysForecastURL = "https://api.openweathermap.org/data/2.5/forecast?q="+ searchedCity+"&appid=" + apiKey
+                    var fiveDaysForecastURL = "https://api.openweathermap.org/data/2.5/forecast?q="+ searchedCity+"&appid=" + apiKey
                     fetch(fiveDaysForecastURL)
                     .then(function(FiveDForec){
                         FiveDForec.json().then(function(answer){
                             console.log(answer);
 
+                            // var fiveDayForecastHTML = `
+                            // <h4>5 Day Forecast:</h4>
+                            // <div id='fiveDayForecast' class='d-inline-flex flex-wrap'> `
                             
-
+                            for (var i = 0; answer.list.length; i+=8 ) {
+                                var cityObj = {
+                                    date: answer.list[i].dt_txt,
+                                    icon: answer.list[i].weather[0].icon,
+                                    temp: answer.list[i].main.temp,
+                                    humidity: answer.list[i].main.humidity
+                                }
+                                var dateFor = cityObj.date;
+                                var updateDateFormat = dateFor.substring(0, 10);
+                                var weatherIcon = `https:///openweathermap.org/img/w/${cityObj.icon}.png`;
                             
+                                createCard(updateDateFormat, weatherIcon, cityObj.temp , cityObj.humidity)
+                            }
 
-
-
+                       
                         })
                     })
 
@@ -119,7 +132,7 @@ $(document).ready(function(){
 
             })}
             else {
-                $('#currentCity').text('Please enter a valid City Name');
+                $('#currentCity').text('Please enter a valid City Name')
 
             }
         })
@@ -135,7 +148,21 @@ $(document).ready(function(){
      //    updateSearchedHistory();
 
 
+     function createCard (date, icon, temp, humidity) {
 
+        let fiveDayCard = $("<div>").attr("class", "five-day-card");
+        let cardDate = $("<h5>").attr("class", "card-text");
+        let cardIcon = $("<img>").attr("class", "weatherIcon");
+        let cardTemp = $("<p>").attr("class", "card-text");
+        let cardHumidity = $("<p>").attr("class", "card-text");
+    
+        cardRow.append(fiveDayCard);
+        cardDate.text(date);
+        cardIcon.attr("src", icon);
+        cardTemp.text(`Temp: ${temp} °F`);
+        cardHumidity.text(`Humidity: ${humidity}%`);
+        fiveDayCard.append(cardDate, cardIcon, cardTemp, cardHumidity);
+    }
 
 
 
@@ -144,22 +171,15 @@ $(document).ready(function(){
 
      })
    
-    // function getWeather(cityName){
-
-    //     let queryURL= "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + APIKEY;
-    //     axios.get(queryURL)
-    //     .then(function(response){
-    //         console.log(response)
-    //     })
-
+    
         
         
 
-    // }
+
 
     // searchBtn.on("click", function(){
         
-    //     const searchedCity = inputCity.value;
+    //     var searchedCity = inputCity.value;
     //     console.log(searchedCity)
     //     getWeather(searchedCity);
     //     searchHistory.push(searchedCity);

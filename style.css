@@ -60,20 +60,49 @@
         
     }
     .lowRisk {
-        padding: 8px;
+        padding: 4px;
         background-color: green;
         color: white;
         
     }
 
     .moderateRisk{
-        padding: 8px;
+        padding: 4px;
         background-color: yellow;
         color: black;
     }
     .severeRisk {
-        padding: 8px;
+        padding: 4px;
         background-color: red;
         color: white;
 
+    }
+
+    .card-row {
+       display: flex;
+       flex-direction: row;
+       width: 100%;
+    }
+    .five-day-card{
+        background-color:rgba(22, 22, 22, 0.952);
+        color: white;
+        margin-right: 10px;
+        margin-top: 40px;
+        width: 220px;
+        height: 220px;
+    }
+    .card-text {
+        
+        text-align: center;
+
+    }
+
+    h5 {
+        margin-top: 10px;
+    }
+    .weatherIcon {
+        margin-top:35px;
+        margin-bottom: 20px;
+        margin-left: 80px;
+       
     }
