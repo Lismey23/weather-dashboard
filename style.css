@@ -47,10 +47,7 @@
     .search-component {
         margin: 20px;
     }
-    #uvIndex{
-        width: 76px;
-        height: 45px;
-    }
+   
 
     #currentTempIcon{
         float: right;
@@ -61,4 +58,22 @@
        
         
         
+    }
+    .lowRisk {
+        padding: 8px;
+        background-color: green;
+        color: white;
+        
+    }
+
+    .moderateRisk{
+        padding: 8px;
+        background-color: yellow;
+        color: black;
+    }
+    .severeRisk {
+        padding: 8px;
+        background-color: red;
+        color: white;
+
     }

@@ -40,8 +40,6 @@ $(document).ready(function(){
                 $(".currentConditions").removeClass('currentConditions')
                 $(".currentConditions").addClass("contentShow")
                 
-                
-
 
                 // Display The Searched City by User
 
@@ -63,14 +61,60 @@ $(document).ready(function(){
 
                 // Display the UV Index and display the color associated with a favorable, moderate o severe condition
 
+               
+                const lat = data.coord.lat
+                const lon = data.coord.lon
+                let UVQueryURL = "https://api.openweathermap.org/data/2.5/onecall?lat="+ lat + "&lon=" + lon + "&appid=" + apiKey + "&cnt=1";
+                fetch(UVQueryURL)
+                .then(function(UvResponse){
+                    UvResponse.json().then(function(res){
+                        console.log(res)
 
-                // const uvIndex = data.
+                        const uvValue = res.current.uvi
+                        console.log(uvValue)
+                        $("#uvIndex").text('UV Index: '+ uvValue)
+                        
+
+                        if( uvValue>=0 && uvValue<3){
+                            $('#uvIndex').addClass('lowRisk');
+
+                        }
+                        else if(uvValue>=3 && uvValue<8){
+                            $('#uvIndex').addClass('moderateRisk');
+
+
+                        }
+                        else if (uvValue >=8){
+                            $('#uvIndex').addClass('severeRisk');
+
+                        }
+                       
+                    })
+                    
+                    // Five days Forecast 
+
+                    let fiveDaysForecastURL = "https://api.openweathermap.org/data/2.5/forecast?q="+ searchedCity+"&appid=" + apiKey
+                    fetch(fiveDaysForecastURL)
+                    .then(function(FiveDForec){
+                        FiveDForec.json().then(function(answer){
+                            console.log(answer);
+
+                            
+
+                            
 
 
 
-                // var weatherIcon = document.createElement("img")
-                // weatherIcon.setAttribute("src", `https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`);
-                // citySearchInputEl.appendChild(weatherIcon);
+                        })
+                    })
+
+                    
+                   
+                })
+
+
+                
+               
 
 
             })}
