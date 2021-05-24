@@ -68,7 +68,7 @@ $(document).ready(function(){
                
                 var lat = data.coord.lat
                 var lon = data.coord.lon
-                var UVQueryURL = "https://api.openweathermap.org/data/2.5/onecall?lat="+ lat + "&lon=" + lon + "&appid=" + apiKey + "&cnt=1";
+                var UVQueryURL = "http://api.openweathermap.org/data/2.5/onecall?lat="+ lat + "&lon=" + lon + "&appid=" + apiKey + "&cnt=1";
                 fetch(UVQueryURL)
                 .then(function(UvResponse){
                     UvResponse.json().then(function(res){
@@ -97,7 +97,7 @@ $(document).ready(function(){
                     
                     // Five days Forecast 
 
-                    var fiveDaysForecastURL = "https://api.openweathermap.org/data/2.5/forecast?q="+ searchedCity+"&appid=" + apiKey
+                    var fiveDaysForecastURL = "http://api.openweathermap.org/data/2.5/forecast?q="+ searchedCity+"&appid=" + apiKey
                     fetch(fiveDaysForecastURL)
                     .then(function(FiveDForec){
                         FiveDForec.json().then(function(answer){
@@ -116,7 +116,7 @@ $(document).ready(function(){
                                 }
                                 var dateFor = cityObj.date;
                                 var updateDateFormat = dateFor.substring(0, 10);
-                                var weatherIcon = `https:///openweathermap.org/img/w/${cityObj.icon}.png`;
+                                var weatherIcon = `http:///openweathermap.org/img/w/${cityObj.icon}.png`;
                             
                                 createCard(updateDateFormat, weatherIcon, cityObj.temp , cityObj.humidity)
                             }
