@@ -24,7 +24,7 @@ $(document).ready(function(){
 
         // API call
 
-        var apiCall = "http://api.openweathermap.org/data/2.5/weather?q="+searchedCity+"&units=imperial"+"&appid="+apiKey;
+        var apiCall = "https://api.openweathermap.org/data/2.5/weather?q="+searchedCity+"&units=imperial"+"&appid="+apiKey;
         console.log(apiCall);
         fetch(apiCall)
         .then(function(response){
@@ -61,14 +61,14 @@ $(document).ready(function(){
              
                 var currentTempIcon = $('#currentTempIcon');
                 // Display the Weather Icon
-                currentTempIcon.attr("src", 'http://openweathermap.org/img/wn/'+ data.weather[0].icon+'.png')
+                currentTempIcon.attr("src", 'https://openweathermap.org/img/wn/'+ data.weather[0].icon+'.png')
 
                 // Display the UV Index and display the color associated with a favorable, moderate o severe condition
 
                
                 var lat = data.coord.lat
                 var lon = data.coord.lon
-                var UVQueryURL = "http://api.openweathermap.org/data/2.5/onecall?lat="+ lat + "&lon=" + lon + "&appid=" + apiKey + "&cnt=1";
+                var UVQueryURL = "https://api.openweathermap.org/data/2.5/onecall?lat="+ lat + "&lon=" + lon + "&appid=" + apiKey + "&cnt=1";
                 fetch(UVQueryURL)
                 .then(function(UvResponse){
                     UvResponse.json().then(function(res){
@@ -97,7 +97,7 @@ $(document).ready(function(){
                     
                     // Five days Forecast 
 
-                    var fiveDaysForecastURL = "http://api.openweathermap.org/data/2.5/forecast?q="+ searchedCity+"&appid=" + apiKey
+                    var fiveDaysForecastURL = "https://api.openweathermap.org/data/2.5/forecast?q="+ searchedCity+"&appid=" + apiKey
                     fetch(fiveDaysForecastURL)
                     .then(function(FiveDForec){
                         FiveDForec.json().then(function(answer){
@@ -116,7 +116,7 @@ $(document).ready(function(){
                                 }
                                 var dateFor = cityObj.date;
                                 var updateDateFormat = dateFor.substring(0, 10);
-                                var weatherIcon = `http:///openweathermap.org/img/w/${cityObj.icon}.png`;
+                                var weatherIcon = `https:///openweathermap.org/img/w/${cityObj.icon}.png`;
                             
                                 createCard(updateDateFormat, weatherIcon, cityObj.temp , cityObj.humidity)
                             }
