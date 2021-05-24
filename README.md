@@ -5,6 +5,8 @@
 ## Description
 This project goal was to create a Weather Dashboard retrieving data from another application API, were the user can see the weather outlook of an specific city and it is presented with future conditions.
 
+<img src='./assets/weatherDashboard.png'>
+
 ## Table of Contents
 - [Installation](#Installation)
 - [Usage](#Usage) 
@@ -12,6 +14,8 @@ This project goal was to create a Weather Dashboard retrieving data from another
 - [License](#License)
 - [Test](#Test)
 - [Questions](#Questions)
+
+
 
 ##  Installation
 Clone this repository and have fun
