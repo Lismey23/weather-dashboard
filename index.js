@@ -14,7 +14,7 @@ $(document).ready(function(){
     // var searchedCity;
     // var apiCall;
 
-    var apiKey = 'cb8354f1acd21f6fe1ac79701f78a219'
+    var apiKey = '59a7b43c10837f00876d456337f39c2c'
 
 // Add event listener to the submit button
 
