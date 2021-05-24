@@ -7,10 +7,6 @@ $(document).ready(function(){
     var todayForDate = dayjs().format('MM-DD-YY')
     
 
-    // console.log('todayDate')
-    // // Display the date on the page
-    // $("#currentDate").text(todayDate);
-
     var cardRow = $(".card-row")
     var inputCity = $('#city-input')
     var searchBtn= $('#searchBtn')
@@ -40,6 +36,7 @@ $(document).ready(function(){
                 $(".currentConditions").removeClass('currentConditions')
                 $(".currentConditions").addClass("contentShow")
                 
+                
 
                 // Display The Searched City by User
 
@@ -54,7 +51,14 @@ $(document).ready(function(){
                 // Display WindSpeed
                 $('#windSpeed').text('WindSpeed: '+ data.wind.speed + " MPH")
 
+                // Local Storage
+
+                searchHistory.push(searchedCity);
+                localStorage.setItem('search', JSON.stringify(searchHistory));
+                console.log(searchHistory);
+               
                 
+             
                 var currentTempIcon = $('#currentTempIcon');
                 // Display the Weather Icon
                 currentTempIcon.attr("src", 'http://openweathermap.org/img/wn/'+ data.weather[0].icon+'.png')
@@ -140,12 +144,9 @@ $(document).ready(function(){
 
 
 
-        console.log(searchedCity)
-        // getWeather(searchedCity);
-        // searchHistory.push(searchedCity);
-        // console.log(searchHistory);
-        // localStorage.setItem('search',JSON.stringify(searchHistory))
-     //    updateSearchedHistory();
+       
+       
+       
 
 
      function createCard (date, icon, temp, humidity) {
@@ -155,8 +156,10 @@ $(document).ready(function(){
         let cardIcon = $("<img>").attr("class", "weatherIcon");
         let cardTemp = $("<p>").attr("class", "card-text");
         let cardHumidity = $("<p>").attr("class", "card-text");
+        
     
         cardRow.append(fiveDayCard);
+
         cardDate.text(date);
         cardIcon.attr("src", icon);
         cardTemp.text(`Temp: ${temp} °F`);
@@ -170,6 +173,37 @@ $(document).ready(function(){
 
 
      })
+
+    //  function updateSearchHistory () {
+    //      var newCity = JSON.parse(localStorage.getItem("search"));
+         
+        
+    //     // for (i=0; i<= newCity.length; i++){
+
+    //     //     var listEl = $("<li>");
+    //     //     $(listEl).attr('class','list-group-item');
+    //     //     $(listEl).attr('data-value');
+    //     //     $('.list-group').append(listEl)
+           
+            
+
+    //     //  }
+         
+        
+        
+        
+         
+    //     //     var oldData= JSON.parse(localStorage.getItem("search"))
+    //     //     var addCity = $("<li>")
+    //     //     addCity.attr("value", );
+    //     //     addCity.attr("type", "text");
+    //     //     document.getElementsByClassName('history').innerHTML= JSON.parse(localStorage.getItem("search"))
+    //     // // localStorage.getItem("search")
+    //     // //  var addCity = $("<li>")
+    //     // //  addCity.val('searchedCity')
+    //     // //  addCity.appendTo('.history')
+
+    //  }
    
     
         
@@ -177,17 +211,7 @@ $(document).ready(function(){
 
 
 
-    // searchBtn.on("click", function(){
-        
-    //     var searchedCity = inputCity.value;
-    //     console.log(searchedCity)
-    //     getWeather(searchedCity);
-    //     searchHistory.push(searchedCity);
-    //     console.log(searchHistory);
-    //     localStorage.setItem('search',JSON.stringify(searchHistory))
-    //  //    updateSearchedHistory();
-
-    //  })
+   
 
 })
 
